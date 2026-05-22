@@ -95,18 +95,18 @@ const config: Config = {
         {
           type: 'docSidebar',
           sidebarId: 'docs',
-          position: 'left',
+          position: 'right',
           label: 'Knowledge Base',
         },
         {
           to: '/blog',
-          label: 'Articles & TILs',
-          position: 'left',
+          label: 'Blog',
+          position: 'right',
         },
         {
           to: '/tags',
           label: 'Tags',
-          position: 'left',
+          position: 'right',
         },
         {
           to: '/contributing',
@@ -136,7 +136,7 @@ const config: Config = {
         {
           title: 'Community',
           items: [
-            {label: 'Articles & TILs', to: '/blog'},
+            {label: 'Blog', to: '/blog'},
             {label: 'How to Contribute', to: '/contributing'},
             {label: 'GitHub', href: 'https://github.com/CeyCode/knowledgebase'},
           ],
