@@ -1,6 +1,6 @@
 ---
 title: Welcome
-slug: /
+slug: /welcome
 sidebar_position: 1
 ---
 
