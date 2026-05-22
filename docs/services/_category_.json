@@ -1,0 +1,8 @@
+{
+  "label": "Services",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Reference documentation for each backend service — APIs, ports, data flows, and dependencies."
+  }
+}
