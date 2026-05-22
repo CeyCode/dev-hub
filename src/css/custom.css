@@ -24,3 +24,19 @@
   --ifm-color-primary-lightest: #dbeafe;
   --docusaurus-highlighted-code-line-bg: rgba(96, 165, 250, 0.15);
 }
+
+/* ── Reading area padding ──────────────────────────────────────────── */
+
+/* Mobile: add side breathing room when sidebars are hidden */
+article {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+/* Desktop: comfortable margins between the sidebar edges and the text */
+@media (min-width: 997px) {
+  article {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
