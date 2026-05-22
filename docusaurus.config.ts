@@ -11,11 +11,13 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://devhub.ceycode.com',
-  baseUrl: '/',
+  url: 'https://CeyCode.github.io',
+  baseUrl: '/knowledgebase/',
 
-  organizationName: 'ceycode',
-  projectName: 'dev-hub',
+  organizationName: 'CeyCode',
+  projectName: 'knowledgebase',
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
 
   onBrokenLinks: 'throw',
   markdown: {
@@ -51,7 +53,7 @@ const config: Config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/ceycode/dev-hub/tree/main/',
+          editUrl: 'https://github.com/CeyCode/knowledgebase/tree/main/',
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
         },
@@ -60,7 +62,7 @@ const config: Config = {
           blogSidebarTitle: 'Recent articles',
           blogSidebarCount: 15,
           postsPerPage: 10,
-          editUrl: 'https://github.com/ceycode/dev-hub/tree/main/',
+          editUrl: 'https://github.com/CeyCode/knowledgebase/tree/main/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -103,7 +105,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/ceycode/dev-hub',
+          href: 'https://github.com/CeyCode/knowledgebase',
           label: 'GitHub',
           position: 'right',
         },
@@ -127,7 +129,7 @@ const config: Config = {
           items: [
             {label: 'Articles & TILs', to: '/blog'},
             {label: 'How to Contribute', to: '/contributing'},
-            {label: 'GitHub', href: 'https://github.com/ceycode'},
+            {label: 'GitHub', href: 'https://github.com/CeyCode/knowledgebase'},
           ],
         },
       ],
