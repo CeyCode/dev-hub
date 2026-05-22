@@ -24,9 +24,9 @@ tags: [server-architecture, server-types]
 
 :::
 
-## A "server" is just a category — there are many shapes
+## A server is just a category — there are many shapes
 
-Up to now we've used "server" loosely to mean "a program that listens on a port." But that program can be specialised in different ways depending on what it's listening for.
+Up to now we've used `server` loosely to mean *a program that listens on a port*. But that program can be specialised in different ways depending on what it's listening for.
 
 <div style={{textAlign: 'center'}}>
 
@@ -319,16 +319,16 @@ A typical Spring Boot service might expose a REST API on port 8080, WebSocket on
 
 ## Common confusions
 
-**"Isn't a WebSocket server just a web server?"**
+**Isn't a WebSocket server just a web server?**
 Operationally, yes — the WebSocket handshake is an HTTP upgrade, so it usually runs on the same port (`443`) behind the same load balancer. But the *connection lifetime* and concurrency model are very different. A web server handling 1000 RPS is mostly idle on connections; a WebSocket server holding 100k open sockets has very different scaling needs.
 
-**"Can I do real-time with HTTP instead of WebSocket?"**
+**Can I do real-time with HTTP instead of WebSocket?**
 Yes — with **Server-Sent Events** for server-to-client push, or **long polling** as a fallback. WebSocket is just the most efficient option when you need both directions.
 
-**"Do I have to pick one server type per service?"**
+**Do I have to pick one server type per service?**
 No. One service can expose multiple — REST on `/api`, WebSocket on `/ws`, health checks on `/healthz`. The framework you pick decides how easily you can do this.
 
-**"Is HTTP/3 a new server type?"**
+**Is HTTP/3 a new server type?**
 No, it's a new transport for the same HTTP semantics. From your code's perspective it's still an HTTP server.
 
 ## What's next

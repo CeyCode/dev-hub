@@ -13,7 +13,7 @@ tags: [server-architecture, tomcat, netty, java, concurrency]
 - **Tomcat** is a **servlet container** built on the blocking, thread-per-request model. Simple to code against; scales by adding threads.
 - **Netty** is a **non-blocking networking framework** built on the event-loop model. Harder to code against; scales by handling many connections per thread.
 - Java 21+ **virtual threads** are the modern third option — write blocking-style code on a Tomcat-like server with near-Netty scalability.
-- The choice is mostly a concurrency-model choice, not a "which is faster" choice.
+- The choice is mostly a concurrency-model choice, not a *which is faster* choice.
 
 :::
 
@@ -25,7 +25,7 @@ tags: [server-architecture, tomcat, netty, java, concurrency]
 
 ## Two answers to the same question
 
-Both Tomcat and Netty solve "be a server in Java." They differ on the question from [doc 4](./blocking-vs-non-blocking): **what does a thread do while waiting for the network?**
+Both Tomcat and Netty solve the same problem: *be a server in Java*. They differ on the question from [doc 4](./blocking-vs-non-blocking): **what does a thread do while waiting for the network?**
 
 <div style={{textAlign: 'center'}}>
 
@@ -64,7 +64,7 @@ The servlet API was standardised in 1997 and has been the foundation of Java web
 
 ### What a servlet container is
 
-A **servlet container** (a.k.a. "servlet engine") is the runtime that:
+A **servlet container** (a.k.a. `servlet engine`) is the runtime that:
 
 1. Owns the listening socket (port 8080)
 2. Manages a pool of worker threads
@@ -349,19 +349,19 @@ The result: Tomcat with virtual threads can handle ~Netty-scale concurrency **wi
 
 ## Common confusions
 
-**"Is Tomcat slow?"**
+**Is Tomcat slow?**
 No. Tomcat per-request latency is excellent. The thread pool model just doesn't scale to tens of thousands of *concurrent* connections. For typical RPS workloads, it's perfectly fast.
 
-**"Is Netty always faster than Tomcat?"**
+**Is Netty always faster than Tomcat?**
 For a single request, no — sometimes slower (more overhead per request). Netty wins on **concurrency**, not per-request speed. If your service handles 100 RPS, Tomcat is just as fast and far easier to write.
 
-**"Does Spring WebFlux always use Netty?"**
+**Does Spring WebFlux always use Netty?**
 By default, yes. It can also run on Tomcat or Jetty in non-blocking mode (servlet 3.1+ supports async), but Reactor Netty is the standard.
 
-**"Can I use Netty with Spring MVC?"**
+**Can I use Netty with Spring MVC?**
 You can swap Tomcat for Reactor Netty even on Spring MVC, but you don't get non-blocking semantics — Spring MVC is still synchronous, so Netty is wasted underneath.
 
-**"Now that virtual threads exist, is Netty obsolete?"**
+**Now that virtual threads exist, is Netty obsolete?**
 For most web APIs, virtual threads cover the use case more cheaply (no code rewrite). Netty still wins when you need **fine-grained protocol control** (custom binary protocols, low-level tuning, non-HTTP servers).
 
 ---

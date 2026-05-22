@@ -163,7 +163,7 @@ sequenceDiagram
 
 Every server-side technology — Tomcat, Netty, nginx, Node.js — does steps 4–6 differently. That's what the rest of this series is about.
 
-## "Client" and "server" are roles, not boxes
+## Client and server are roles, not boxes
 
 A single program is often both. Your microservice that handles `/orders` is a *server* to the browser. But when it calls the payments service, it's a *client*. Same process, different role.
 
@@ -171,8 +171,8 @@ This matters because the same primitives — sockets, threads, protocols — app
 
 ## Common confusions
 
-**Is "server" the machine or the program?**
-In ops contexts, "server" often means hardware. In code contexts, it means a *program that listens*. We'll always mean the program.
+**Is `server` the machine or the program?**
+In ops contexts, `server` often means hardware. In code contexts, it means a *program that listens*. We'll always mean the program.
 
 **Is a database a server?**
 Yes. Postgres, Redis, MongoDB all listen on a port and serve queries. They use the same client-server model, just with their own protocols.
@@ -180,14 +180,14 @@ Yes. Postgres, Redis, MongoDB all listen on a port and serve queries. They use t
 **Does the client always start the conversation?**
 Always. That's the definition. Even in WebSocket, where the server can push messages later, the client opens the connection first.
 
-**Is "the cloud" different?**
+**Is *the cloud* different?**
 No. AWS, GCP, your laptop — they're all just machines running listening programs. The cloud is logistics, not a different model.
 
 ## What you'll learn next
 
 Now you understand the *what*. The rest of the series is about the *how*:
 
-- **[Sockets](./sockets)** — the OS abstraction that "open a connection" actually maps to.
+- **[Sockets](./sockets)** — the OS abstraction that `open a connection` actually maps to.
 - **[Threads](./threads-and-concurrency)** — how one server handles thousands of clients at once.
 - **[Blocking vs Non-Blocking I/O](./blocking-vs-non-blocking)** — the single most important concept for understanding modern server design.
 

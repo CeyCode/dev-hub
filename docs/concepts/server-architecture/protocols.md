@@ -108,7 +108,7 @@ Accept: application/json
 
 ```
 
-The blank line tells the server "headers are done, body follows" (no body here since it's a GET).
+The blank line tells the server *headers are done, body follows* (no body here since it's a GET).
 
 ### HTTP/1.1 vs HTTP/2 vs HTTP/3
 
@@ -122,7 +122,7 @@ For most server code, the version is **transparent** — your framework speaks a
 
 ### HTTP is stateless
 
-The server doesn't inherently remember anything between requests. Each `GET /users/42` is independent — no concept of "this is the same client as before."
+The server doesn't inherently remember anything between requests. Each `GET /users/42` is independent — no concept of *this is the same client as before*.
 
 Statefulness on top of HTTP is bolted on: cookies, session tokens, JWTs. The protocol itself doesn't care.
 
@@ -162,7 +162,7 @@ Key differences from HTTP:
 | **State** | Stateless | Stateful — server tracks every open connection |
 | **Best for** | REST APIs, traditional web | Chat, live dashboards, multiplayer games, collaborative editing |
 
-WebSocket is what you reach for when **the server needs to push data to the client without being asked**. Without WebSocket, the only HTTP-based alternative is polling ("any new messages?" every 2 seconds), which is wasteful and laggy.
+WebSocket is what you reach for when **the server needs to push data to the client without being asked**. Without WebSocket, the only HTTP-based alternative is polling (*any new messages?* every 2 seconds), which is wasteful and laggy.
 
 ## Other protocols worth knowing about
 
@@ -230,19 +230,19 @@ Quick comparison table:
 
 ## Common confusions
 
-**"Is HTTPS a different protocol?"**
+**Is HTTPS a different protocol?**
 No. HTTPS is just HTTP with TLS encryption added underneath. The HTTP semantics are identical. The TLS layer sits between HTTP and TCP.
 
-**"Why is WebSocket still in HTTP's family then?"**
+**Why is WebSocket still in HTTP's family then?**
 Because the **handshake** is an HTTP request. After the handshake, the protocol switches — but reusing HTTP for the upgrade is what lets WebSocket pass through firewalls, proxies, and load balancers that only understand HTTP.
 
-**"Is gRPC just better HTTP?"**
+**Is gRPC just better HTTP?**
 Not exactly. gRPC is opinionated about type contracts and only works with HTTP/2. If you need browser support or schema-less flexibility, REST over HTTP is still the default.
 
-**"My TCP server keeps getting partial messages — is that a bug?"**
+**My TCP server keeps getting partial messages — is that a bug?**
 No, that's the byte-stream property doing its job. You need to design a framing scheme (length-prefixed or delimited) so your code knows where messages end.
 
-**"Should I write a custom protocol on raw TCP?"**
+**Should I write a custom protocol on raw TCP?**
 Rarely. Existing protocols (HTTP, WebSocket, gRPC, MQTT) cover most needs. Custom protocols make sense for very specific cases: hardware devices that can't speak HTTP, ultra-low-latency trading, or proprietary integrations.
 
 ## Where this lands in the series

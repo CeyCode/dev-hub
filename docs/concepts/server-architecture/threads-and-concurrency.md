@@ -12,7 +12,7 @@ tags: [server-architecture, threads, concurrency]
 
 - A **thread** is a lightweight unit of execution. A server uses threads so it can handle multiple clients at the same time.
 - The classic pattern is **one thread per client (or per request)** — simple, but it doesn't scale past ~10k threads.
-- The fix isn't "more threads." It's **fewer threads that each do more work** — which is what the [next doc on blocking I/O](./blocking-vs-non-blocking) is about.
+- The fix isn't *more threads*. It's **fewer threads that each do more work** — which is what the [next doc on blocking I/O](./blocking-vs-non-blocking) is about.
 
 :::
 
@@ -82,7 +82,7 @@ A thread isn't free. On a JVM:
 | **Context switch** | ~1–10 microseconds |
 | **Practical max** | ~5k–10k threads before things get bad |
 
-10,000 threads × 1 MB = 10 GB of stack memory just for thread stacks. That alone is why "one thread per client" hits a wall.
+10,000 threads × 1 MB = 10 GB of stack memory just for thread stacks. That alone is why *one thread per client* hits a wall.
 
 ## Three patterns for using threads in a server
 
@@ -174,7 +174,7 @@ graph TB
 
 </div>
 
-A tiny number of threads (often just one per CPU core) watch *all* sockets at once. When a socket has data, the thread reads it, runs a small piece of work, and moves on to the next ready socket. No thread is ever "blocked" waiting for a slow client.
+A tiny number of threads (often just one per CPU core) watch *all* sockets at once. When a socket has data, the thread reads it, runs a small piece of work, and moves on to the next ready socket. No thread is ever *blocked* waiting for a slow client.
 
 **Pros:** can handle 100k+ concurrent connections with a handful of threads.
 **Cons:** writing the code is harder (callbacks, futures, reactive streams). Any accidentally-blocking call (synchronous DB query, slow filesystem read) freezes the whole loop.
@@ -183,11 +183,11 @@ A tiny number of threads (often just one per CPU core) watch *all* sockets at on
 
 ## The C10k problem (and why patterns shifted)
 
-In the late 1990s, "C10k" stood for the **challenge of serving 10,000 concurrent connections from one server**. With thread-per-connection, the OS ran out of memory and CPU long before reaching 10k. The fix turned out not to be "make threads cheaper" but "stop assigning a thread to every connection." That's what event loops do — and it's the bridge into the [next doc](./blocking-vs-non-blocking).
+In the late 1990s, `C10k` stood for the **challenge of serving 10,000 concurrent connections from one server**. With thread-per-connection, the OS ran out of memory and CPU long before reaching 10k. The fix turned out not to be *make threads cheaper* but *stop assigning a thread to every connection*. That's what event loops do — and it's the bridge into the [next doc](./blocking-vs-non-blocking).
 
 ## The new middle ground: virtual threads (Project Loom)
 
-Java 21 (and modern Kotlin coroutines, Go goroutines) introduced **virtual threads** — threads that the JVM (or language runtime) manages itself, not the OS. They cost a few KB each instead of 1 MB, and you can have millions of them. When one "blocks" on I/O, the runtime quietly parks it and runs another on the same OS thread.
+Java 21 (and modern Kotlin coroutines, Go goroutines) introduced **virtual threads** — threads that the JVM (or language runtime) manages itself, not the OS. They cost a few KB each instead of 1 MB, and you can have millions of them. When one *blocks* on I/O, the runtime quietly parks it and runs another on the same OS thread.
 
 The result: you get the simple code of thread-per-request *and* the scaling of an event loop. We'll come back to this in [doc 7](./tomcat-vs-netty).
 
@@ -247,13 +247,13 @@ graph LR
 
 ## Common confusions
 
-**"More threads = faster server, right?"**
+**More threads = faster server, right?**
 Only up to a point. Past the number of CPU cores, more threads mostly just increase context-switching overhead. The sweet spot depends on whether your workload is CPU-bound (few threads) or I/O-bound (more threads, but still bounded).
 
-**"Are async/await and threads the same thing?"**
+**Are async/await and threads the same thing?**
 No, but they're related. `async/await` is a *programming model* for non-blocking code. Threads are an OS-level execution unit. You can have async code on top of an event loop (Node.js) or on top of virtual threads (Kotlin coroutines).
 
-**"What happens if two threads write to the same variable?"**
+**What happens if two threads write to the same variable?**
 Race conditions. Threads share memory, so coordinating who-touches-what (locks, atomic operations, immutability) is a whole subject of its own. Server frameworks try to keep request-scoped data on the request thread to avoid this.
 
 ## What unlocks next

@@ -99,7 +99,7 @@ Reading bottom-up:
 
 ## Spring Core: not about HTTP at all
 
-The first thing to internalise: **"Spring" by itself has nothing to do with web servers.** Spring is a **dependency injection container** + a bag of utilities (AOP, configuration, transaction management, etc.).
+The first thing to internalise: **Spring by itself has nothing to do with web servers.** Spring is a **dependency injection container** + a bag of utilities (AOP, configuration, transaction management, etc.).
 
 ```java
 @Service
@@ -118,7 +118,7 @@ You can use Spring for:
 - A library
 - ...and oh, also web servers (via Spring MVC or WebFlux)
 
-When people say "Spring", they almost always mean Spring + Spring MVC + Spring Boot, but those are layered choices.
+When people say `Spring`, they almost always mean Spring + Spring MVC + Spring Boot, but those are layered choices.
 
 ## Spring MVC: the servlet-based web framework
 
@@ -197,7 +197,7 @@ Default to **MVC**. Reach for **WebFlux** only when:
 - You need **streaming** semantics with backpressure
 - Your whole downstream stack is already reactive
 
-Don't pick WebFlux just because "reactive sounds faster." For typical REST APIs, MVC with virtual threads ([doc 7](./tomcat-vs-netty)) gives you 95% of the benefit with 5% of the complexity.
+Don't pick WebFlux just because *reactive sounds faster*. For typical REST APIs, MVC with virtual threads ([doc 7](./tomcat-vs-netty)) gives you 95% of the benefit with 5% of the complexity.
 
 ## Spring Boot: the opinionated wrapper
 
@@ -366,7 +366,7 @@ TcpInboundGateway gateway(TcpNetServerConnectionFactory cf) {
 
 Engine: **Netty** under the hood (via Spring Integration TCP). You can also drop down to raw Netty inside a Spring Boot app for more control.
 
-## The matrix: "I want X server type"
+## The matrix: choosing the right server type
 
 | I want to build... | Starter | Underlying engine | Concurrency |
 |---|---|---|---|
@@ -382,22 +382,22 @@ Engine: **Netty** under the hood (via Spring Integration TCP). You can also drop
 
 ## Common confusions
 
-**"Is Spring Boot a server?"**
+**Is Spring Boot a server?**
 No. Spring Boot is the wrapper. The actual server is the **embedded engine** (Tomcat or Netty) that Spring Boot configures and starts.
 
-**"Can I run Spring MVC without Spring Boot?"**
+**Can I run Spring MVC without Spring Boot?**
 Yes — that's how Spring worked before 2014. You'd package a WAR file and deploy it to a standalone Tomcat. Spring Boot just bundles the engine into the JAR.
 
-**"Does WebFlux replace MVC?"**
+**Does WebFlux replace MVC?**
 No, they're alternatives. Pick one per service. Most services should still use MVC.
 
-**"Can I mix MVC and WebFlux in one app?"**
+**Can I mix MVC and WebFlux in one app?**
 Not on the same server (one or the other handles HTTP). But you can use **WebClient** (the reactive HTTP client from WebFlux) inside an MVC app for outbound calls.
 
-**"Is Tomcat slower than Netty for the same Spring MVC code?"**
+**Is Tomcat slower than Netty for the same Spring MVC code?**
 The MVC code is blocking either way, so swapping engines doesn't change much. The benefit of Netty only shows up when the whole stack (Spring WebFlux, R2DBC, etc.) is non-blocking.
 
-**"What about Quarkus, Micronaut, Helidon?"**
+**What about Quarkus, Micronaut, Helidon?**
 These are *alternatives to Spring Boot* — same idea (JAR with embedded server), often faster startup, smaller memory. They have similar starter ecosystems.
 
 ## Where to go next

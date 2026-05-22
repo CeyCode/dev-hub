@@ -24,7 +24,7 @@ tags: [server-architecture, sockets, networking]
 
 ## What a socket actually is
 
-A **socket** is an OS-level object that represents one end of a network conversation. When your code says "open a connection," what the OS hears is "give me a socket and connect it to that address."
+A **socket** is an OS-level object that represents one end of a network conversation. When your code says `open a connection`, what the OS hears is *give me a socket and connect it to that address*.
 
 The mental model that unlocks everything:
 
@@ -78,9 +78,9 @@ graph TB
     CS2["📞 Connected Socket<br/>↔ client 2"]
     CS3["📞 Connected Socket<br/>↔ client 3"]
 
-    LS -.->|accept()| CS1
-    LS -.->|accept()| CS2
-    LS -.->|accept()| CS3
+    LS -.->|"accept()"| CS1
+    LS -.->|"accept()"| CS2
+    LS -.->|"accept()"| CS3
 
     style LS fill:#2563eb,color:#fff
     style CS1 fill:#10b981,color:#fff
@@ -90,12 +90,12 @@ graph TB
 
 </div>
 
-**Listening socket** (a.k.a. the "doorbell")
+**Listening socket** (a.k.a. the *doorbell*)
 - The server has exactly one of these per port it serves.
 - Its only job: wait for new connection requests and produce new connected sockets.
 - You never read or write actual application data through it.
 
-**Connected socket** (a.k.a. "an active call")
+**Connected socket** (a.k.a. *an active call*)
 - One per active client connection.
 - This is where actual bytes flow back and forth.
 - When the client disconnects, this socket is closed and freed.
@@ -139,7 +139,7 @@ sequenceDiagram
 
 1. **`socket()`** — ask the OS for a new socket. You get back a file descriptor.
 2. **`bind()`** — claim a specific port (e.g., 8080) so clients know where to find you.
-3. **`listen()`** — tell the OS "I'm ready to accept incoming connections on this socket."
+3. **`listen()`** — tell the OS *I'm ready to accept incoming connections on this socket*.
 4. **`accept()`** — wait for the next incoming connection. When one arrives, the OS hands you a *new* socket — the connected socket — and the listening socket goes back to waiting.
 
 Once you have the connected socket, you read and write bytes through it until either side closes the connection.
@@ -183,7 +183,7 @@ A **port** is a 16-bit number (0–65535) that identifies a specific service on 
 
 When you bind a server to port 8080, you're claiming that port on your machine — only one process can bind a given port at a time.
 
-## What "the connection is closed" actually means
+## What closing a connection actually means
 
 Either side can close a connection by calling `close()` on its socket. The OS sends a TCP `FIN` packet, the other side acknowledges, both sides free the socket. If a client disappears without closing (laptop closed, Wi-Fi dropped), the server's socket eventually hits a **timeout** and closes too — but this can take minutes by default, which matters when you're trying to detect dead clients quickly.
 
@@ -191,21 +191,21 @@ This is why protocols like WebSocket layer their own **ping/pong** mechanism on 
 
 ## Common confusions
 
-**"How can thousands of clients use port 443?"**
+**How can thousands of clients use port 443?**
 They all connect to *destination* port 443 on the server, but each client uses a different *source* port. The 5-tuple is unique even though the server-side port is shared.
 
-**"Is a socket the same as a port?"**
+**Is a socket the same as a port?**
 No. A port is just a number that identifies a service. A socket is the actual OS object you do I/O on. One listening socket binds one port; many connected sockets share the same server port via different 5-tuples.
 
-**"Why does my server fail with 'Address already in use'?"**
+**Why does my server fail with `Address already in use`?**
 A previous instance bound the same port and the OS hasn't released it yet (the `TIME_WAIT` state — typically 30–120 seconds). Enable `SO_REUSEADDR` if you need to rebind immediately.
 
-**"Are sockets only for TCP?"**
+**Are sockets only for TCP?**
 No. There are also UDP sockets, Unix domain sockets (same machine only, very fast), and raw sockets. TCP is just the most common.
 
 ## Why this matters for the next docs
 
-Every server design decision boils down to "what does a thread (or event loop) do with each socket?"
+Every server design decision boils down to *what does a thread (or event loop) do with each socket?*
 
 - **[Threads](./threads-and-concurrency)** — how do we have many sockets being read/written at the same time?
 - **[Blocking vs Non-Blocking I/O](./blocking-vs-non-blocking)** — when a `read()` has no data yet, what does the thread do? Sit and wait, or move on?

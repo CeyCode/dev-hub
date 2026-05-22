@@ -104,7 +104,7 @@ sequenceDiagram
 
 </div>
 
-The thread doesn't park on any individual socket. Instead, it asks the OS: *"tell me when any of these 10,000 sockets has something for me."* That single call (`epoll_wait` on Linux, `kqueue` on macOS/BSD, IOCP on Windows) wakes the thread up only when there's actual work to do.
+The thread doesn't park on any individual socket. Instead, it asks the OS: *tell me when any of these 10,000 sockets has something for me*. That single call (`epoll_wait` on Linux, `kqueue` on macOS/BSD, IOCP on Windows) wakes the thread up only when there's actual work to do.
 
 Result: **one thread can productively serve thousands of mostly-idle sockets.** No more 10k threads, no more 10 GB of stack memory.
 
@@ -155,7 +155,7 @@ You almost never call these directly, but knowing they exist demystifies how non
 
 | OS | Primitive | What it does |
 |---|---|---|
-| **Linux** | `epoll` | "Tell me which of these N file descriptors are ready." O(1) per ready FD. |
+| **Linux** | `epoll` | *Tell me which of these N file descriptors are ready.* O(1) per ready FD. |
 | **macOS/BSD** | `kqueue` | Same idea, different API. |
 | **Windows** | `IOCP` (I/O Completion Ports) | Slight variant — the OS finishes the I/O and then notifies you. |
 | **POSIX (legacy)** | `select`, `poll` | The old way. O(N) per call — fine for small N, terrible for 10k+. |
@@ -241,16 +241,16 @@ flowchart TD
 
 ## Common confusions
 
-**"Isn't non-blocking always better?"**
+**Isn't non-blocking always better?**
 No. For low-concurrency workloads, blocking code is simpler, easier to debug, and just as fast. Premature reactive code is a known way to hurt yourself.
 
-**"Does 'async' mean non-blocking?"**
-"Async" usually means "this function returns a Future/Promise instead of the value directly." That's almost always implemented on top of non-blocking I/O — but the code style is what's different.
+**Does `async` mean non-blocking?**
+`async` usually means *this function returns a Future/Promise instead of the value directly*. That's almost always implemented on top of non-blocking I/O — but the code style is what's different.
 
-**"Why is Node.js so fast then?"**
+**Why is Node.js so fast then?**
 Node was non-blocking from day one (its whole runtime is one event loop). For I/O-heavy workloads, it scales without ever needing a thread pool. The cost is that any CPU-heavy work in JS land freezes everything.
 
-**"My Spring MVC controller hits a slow API. Should I switch to WebFlux?"**
+**My Spring MVC controller hits a slow API. Should I switch to WebFlux?**
 Try virtual threads first (Spring Boot 3.2+). Same code, much better scaling. WebFlux is worth it only if you genuinely need backpressure / streaming semantics, or if your whole stack is reactive.
 
 ## Where this lands in the rest of the series
