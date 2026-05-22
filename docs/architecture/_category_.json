@@ -1,8 +1,0 @@
-{
-  "label": "Architecture",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "How Ceycode systems are designed — from the big picture down to individual service internals."
-  }
-}

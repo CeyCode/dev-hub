@@ -1,0 +1,5 @@
+{
+  "label": "Tools",
+  "position": 4,
+  "link": { "type": "generated-index", "description": "Guides for the tools we use daily — containers, orchestration, version control, and CI/CD." }
+}

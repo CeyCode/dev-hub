@@ -1,24 +1,25 @@
 ---
 title: Glossary
-description: Definitions of terms, acronyms, and jargon used across Ceycode systems and docs.
-owner: ceycode-team
-last_reviewed: 2026-05-22
-sidebar_position: 9
+description: Definitions of common engineering terms, acronyms, and jargon used across the team.
+sidebar_position: 8
 ---
 
 # Glossary
 
-Terms are listed alphabetically.
+Common engineering terms used across articles, discussions, and code reviews. Listed alphabetically.
 
 | Term | Definition |
 |---|---|
-| **ADR** | Architecture Decision Record — a short document explaining why a significant technical decision was made. See [About ADRs](./adr/README.md). |
-| **IMEI** | International Mobile Equipment Identity — a unique 15-digit number that identifies a physical GPS device. |
-| **IoT** | Internet of Things — physical devices (GPS trackers, sensors) that connect to the internet. |
-| **Meitrack** | A GPS tracker hardware vendor whose devices connect to the Ceycode TCP server. |
-| **Netty** | A Java NIO client-server framework used to build the Ceycode TCP server. |
-| **P1/P2/P3** | Incident severity levels. P1 = production down, P2 = significant degradation, P3 = minor issue. |
-| **TCP Server** | Ceycode's Netty-based server that accepts persistent TCP connections from IoT devices. |
-| **Ultravision** | An external camera/video system integrated with Ceycode. |
+| **ADR** | Architecture Decision Record — a short document capturing why a significant technical decision was made. |
+| **CAP Theorem** | In a distributed system you can only guarantee two of three: Consistency, Availability, Partition tolerance. |
+| **CI/CD** | Continuous Integration / Continuous Delivery — automating build, test, and deployment pipelines. |
+| **CQRS** | Command Query Responsibility Segregation — separating read and write models in a system. |
+| **DRY** | Don't Repeat Yourself — avoid duplication by abstracting shared logic. |
+| **Idempotent** | An operation that produces the same result no matter how many times it's applied. |
+| **N+1 Problem** | A database performance issue where fetching N records triggers N additional queries instead of one join. |
+| **OWASP** | Open Web Application Security Project — publishes the Top 10 list of common web vulnerabilities. |
+| **SLO / SLA** | Service Level Objective / Agreement — targets and commitments for system reliability (e.g. 99.9% uptime). |
+| **TIL** | Today I Learned — a short write-up of a small discovery or insight. |
+| **YAGNI** | You Aren't Gonna Need It — don't build for hypothetical future requirements. |
 
-_Add new terms alphabetically as they come up in documentation or onboarding questions._
+_Spot a missing term? Add it here in a PR._

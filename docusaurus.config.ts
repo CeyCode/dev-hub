@@ -3,20 +3,19 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Ceycode Engineering Knowledgebase',
-  tagline: 'How we build, ship, and operate things at Ceycode',
+  title: 'Ceycode Dev Hub',
+  tagline: 'Knowledge shared, skills grown',
   favicon: 'img/favicon.ico',
 
   future: {
     v4: true,
   },
 
-  // TODO: update to the actual production URL before deploying
-  url: 'https://knowledgebase.ceycode.com',
+  url: 'https://devhub.ceycode.com',
   baseUrl: '/',
 
   organizationName: 'ceycode',
-  projectName: 'knowledgebase',
+  projectName: 'dev-hub',
 
   onBrokenLinks: 'throw',
   markdown: {
@@ -32,7 +31,7 @@ const config: Config = {
       require.resolve('@easyops-cn/docusaurus-search-local'),
       {
         hashed: true,
-        indexBlog: false,
+        indexBlog: true,
         language: ['en'],
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
@@ -50,11 +49,19 @@ const config: Config = {
       'classic',
       {
         docs: {
-          routeBasePath: '/', // serve docs at site root
+          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/ceycode/knowledgebase/tree/main/',
+          editUrl: 'https://github.com/ceycode/dev-hub/tree/main/',
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
         },
-        blog: false, // no blog section
+        blog: {
+          showReadingTime: true,
+          blogSidebarTitle: 'Recent articles',
+          blogSidebarCount: 15,
+          postsPerPage: 10,
+          editUrl: 'https://github.com/ceycode/dev-hub/tree/main/',
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -68,7 +75,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Ceycode KB',
+      title: 'Ceycode Dev Hub',
       logo: {
         alt: 'Ceycode Logo',
         src: 'img/logo.svg',
@@ -78,10 +85,25 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'docs',
           position: 'left',
-          label: 'Documentation',
+          label: 'Knowledge Base',
         },
         {
-          href: 'https://github.com/ceycode/knowledgebase',
+          to: '/blog',
+          label: 'Articles & TILs',
+          position: 'left',
+        },
+        {
+          to: '/tags',
+          label: 'Tags',
+          position: 'left',
+        },
+        {
+          to: '/contributing',
+          label: 'Contribute',
+          position: 'right',
+        },
+        {
+          href: 'https://github.com/ceycode/dev-hub',
           label: 'GitHub',
           position: 'right',
         },
@@ -91,21 +113,30 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Team',
+          title: 'Explore',
           items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/ceycode',
-            },
+            {label: 'Languages', to: '/languages/java'},
+            {label: 'Frameworks', to: '/frameworks/react'},
+            {label: 'Tools', to: '/tools/docker'},
+            {label: 'Concepts', to: '/concepts/system-design'},
+            {label: 'Best Practices', to: '/best-practices/code-review'},
+          ],
+        },
+        {
+          title: 'Community',
+          items: [
+            {label: 'Articles & TILs', to: '/blog'},
+            {label: 'How to Contribute', to: '/contributing'},
+            {label: 'GitHub', href: 'https://github.com/ceycode'},
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Ceycode. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Ceycode Engineering. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
-      additionalLanguages: ['bash', 'java', 'yaml', 'json', 'sql'],
+      additionalLanguages: ['bash', 'java', 'yaml', 'json', 'sql', 'python', 'go', 'typescript'],
     },
   } satisfies Preset.ThemeConfig,
 };

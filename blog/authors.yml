@@ -1,25 +1,21 @@
-yangshun:
-  name: Yangshun Tay
-  title: Ex-Meta Staff Engineer, Co-founder GreatFrontEnd
-  url: https://linkedin.com/in/yangshun
-  image_url: https://github.com/yangshun.png
-  page: true
-  socials:
-    x: yangshunz
-    linkedin: yangshun
-    github: yangshun
-    newsletter: https://www.greatfrontend.com
+## Team authors — add yourself here when you write your first post.
+## Format:
+##   your-handle:
+##     name: Your Name
+##     title: Your role
+##     url: https://github.com/your-handle
+##     image_url: https://github.com/your-handle.png
+##     page: true
 
-slorber:
-  name: Sébastien Lorber
-  title: Docusaurus maintainer
-  url: https://sebastienlorber.com
-  image_url: https://github.com/slorber.png
-  page:
-    # customize the url of the author page at /blog/authors/<permalink>
-    permalink: '/all-sebastien-lorber-articles'
-  socials:
-    x: sebastienlorber
-    linkedin: sebastienlorber
-    github: slorber
-    newsletter: https://thisweekinreact.com
+kavinda:
+  name: Kavinda Dewmith
+  title: Software Engineer
+  url: https://github.com/kavinda
+  image_url: https://github.com/kavinda.png
+  page: true
+
+ceycode-team:
+  name: Ceycode Engineering
+  title: Shared team account
+  url: https://github.com/ceycode
+  image_url: https://github.com/ceycode.png

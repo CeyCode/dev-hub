@@ -1,0 +1,5 @@
+{
+  "label": "Concepts",
+  "position": 5,
+  "link": { "type": "generated-index", "description": "Foundational engineering concepts — system design, databases, security, and performance." }
+}

@@ -1,8 +1,0 @@
-{
-  "label": "Architecture Decisions",
-  "position": 8,
-  "link": {
-    "type": "generated-index",
-    "description": "Architecture Decision Records (ADRs) — why we made the major technical choices we did."
-  }
-}

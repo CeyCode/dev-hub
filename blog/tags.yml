@@ -1,19 +1,98 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+## Technology tags
+java:
+  label: Java
+  permalink: /java
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+typescript:
+  label: TypeScript
+  permalink: /typescript
 
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
+javascript:
+  label: JavaScript
+  permalink: /javascript
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+python:
+  label: Python
+  permalink: /python
+
+go:
+  label: Go
+  permalink: /go
+
+react:
+  label: React
+  permalink: /react
+
+spring-boot:
+  label: Spring Boot
+  permalink: /spring-boot
+
+node-js:
+  label: Node.js
+  permalink: /node-js
+
+docker:
+  label: Docker
+  permalink: /docker
+
+kubernetes:
+  label: Kubernetes
+  permalink: /kubernetes
+
+git:
+  label: Git
+  permalink: /git
+
+ci-cd:
+  label: CI/CD
+  permalink: /ci-cd
+
+## Content type tags
+til:
+  label: TIL
+  permalink: /til
+
+tutorial:
+  label: Tutorial
+  permalink: /tutorial
+
+best-practices:
+  label: Best Practices
+  permalink: /best-practices
+
+deep-dive:
+  label: Deep Dive
+  permalink: /deep-dive
+
+comparison:
+  label: Comparison
+  permalink: /comparison
+
+## Topic tags
+performance:
+  label: Performance
+  permalink: /performance
+
+security:
+  label: Security
+  permalink: /security
+
+databases:
+  label: Databases
+  permalink: /databases
+
+system-design:
+  label: System Design
+  permalink: /system-design
+
+testing:
+  label: Testing
+  permalink: /testing
+
+containers:
+  label: Containers
+  permalink: /containers
+
+streams:
+  label: Streams
+  permalink: /streams
