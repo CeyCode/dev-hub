@@ -1,6 +1,6 @@
 ---
 title: Threads & Server Concurrency
-sidebar_label: 3. Threads & Concurrency
+sidebar_label: Threads & Concurrency
 sidebar_position: 3
 description: How one server program handles thousands of clients at once — and why threads are both the solution and the problem.
 tags: [server-architecture, threads, concurrency]
@@ -28,6 +28,8 @@ A server with one thread can only do one thing at a time. If client A's request 
 
 The fix: **do work in parallel.** That's what threads are for.
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 graph TB
     LS[Listening Socket :8080]
@@ -51,6 +53,8 @@ graph TB
 
     style LS fill:#2563eb,color:#fff
 ```
+
+</div>
 
 The listening socket accepts new connections and hands each one to a thread. Each thread then handles its client independently. CPU cores get to do work in parallel.
 
@@ -84,6 +88,8 @@ A thread isn't free. On a JVM:
 
 ### Pattern 1: Thread-per-connection (the naive approach)
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 sequenceDiagram
     participant LS as Listener Thread
@@ -99,6 +105,8 @@ sequenceDiagram
     Note over T2: handle client 2
 ```
 
+</div>
+
 One thread is born when a client connects, and dies when the client disconnects.
 
 **Pros:** dead simple to write. Each thread just sees its own client.
@@ -107,6 +115,8 @@ One thread is born when a client connects, and dies when the client disconnects.
 **When to use:** never in production, but it's how every networking tutorial starts.
 
 ### Pattern 2: Thread pool with thread-per-request (the classic Java web server)
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 graph TB
@@ -129,6 +139,8 @@ graph TB
     style Q fill:#f59e0b,color:#fff
 ```
 
+</div>
+
 A fixed pool of worker threads is created at startup. The listener accepts a request, hands it off to the pool, then immediately goes back to accepting. A worker picks up the request, processes it fully, then becomes available for the next one.
 
 **Pros:** thread creation cost is paid once. The pool size caps memory use.
@@ -137,6 +149,8 @@ A fixed pool of worker threads is created at startup. The listener accepts a req
 **When to use:** the standard pattern for traditional web servers — **this is how Tomcat works**.
 
 ### Pattern 3: Small thread pool + non-blocking I/O (event loop)
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 graph TB
@@ -158,6 +172,8 @@ graph TB
     style EL fill:#10b981,color:#fff
 ```
 
+</div>
+
 A tiny number of threads (often just one per CPU core) watch *all* sockets at once. When a socket has data, the thread reads it, runs a small piece of work, and moves on to the next ready socket. No thread is ever "blocked" waiting for a slow client.
 
 **Pros:** can handle 100k+ concurrent connections with a handful of threads.
@@ -174,6 +190,8 @@ In the late 1990s, "C10k" stood for the **challenge of serving 10,000 concurrent
 Java 21 (and modern Kotlin coroutines, Go goroutines) introduced **virtual threads** — threads that the JVM (or language runtime) manages itself, not the OS. They cost a few KB each instead of 1 MB, and you can have millions of them. When one "blocks" on I/O, the runtime quietly parks it and runs another on the same OS thread.
 
 The result: you get the simple code of thread-per-request *and* the scaling of an event loop. We'll come back to this in [doc 7](./tomcat-vs-netty).
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 graph LR
@@ -215,6 +233,8 @@ graph LR
     style V8 fill:#10b981,color:#fff
     style V9 fill:#10b981,color:#fff
 ```
+
+</div>
 
 ## Comparison cheat-sheet
 

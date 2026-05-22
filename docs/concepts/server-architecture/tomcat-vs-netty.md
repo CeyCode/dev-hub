@@ -1,6 +1,6 @@
 ---
 title: "Tomcat vs Netty: Two Concurrency Models"
-sidebar_label: 7. Tomcat vs Netty
+sidebar_label: Tomcat vs Netty
 sidebar_position: 7
 description: The same idea — serve HTTP — implemented two completely different ways. Servlets and thread-per-request vs event loops and non-blocking channels.
 tags: [server-architecture, tomcat, netty, java, concurrency]
@@ -27,6 +27,8 @@ tags: [server-architecture, tomcat, netty, java, concurrency]
 
 Both Tomcat and Netty solve "be a server in Java." They differ on the question from [doc 4](./blocking-vs-non-blocking): **what does a thread do while waiting for the network?**
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 graph TB
     Q{Thread is waiting for socket I/O — what to do?}
@@ -37,6 +39,8 @@ graph TB
     style T fill:#3b82f6,color:#fff
     style N fill:#10b981,color:#fff
 ```
+
+</div>
 
 Both are valid. Both have run production systems for two decades. Picking one is mostly about workload shape (and a little bit about taste).
 
@@ -73,6 +77,8 @@ A **servlet container** (a.k.a. "servlet engine") is the runtime that:
 
 ### How Tomcat handles a request
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 sequenceDiagram
     participant C as Client
@@ -92,6 +98,8 @@ sequenceDiagram
     W-->>C: write HTTP response
     Note over W: thread returns to pool
 ```
+
+</div>
 
 Key properties:
 
@@ -130,6 +138,8 @@ Netty is the engine behind:
 
 ### How Netty handles requests: the event loop
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 graph TB
     subgraph EL["Event Loop (1 thread per CPU core)"]
@@ -155,6 +165,8 @@ graph TB
     style C2 fill:#f59e0b,color:#fff
     style C4 fill:#f59e0b,color:#fff
 ```
+
+</div>
 
 The mental model:
 
@@ -208,6 +220,8 @@ This is the price Netty asks for its scalability.
 
 This single picture is what the whole doc is about:
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 sequenceDiagram
     participant C as Client
@@ -223,6 +237,10 @@ sequenceDiagram
     TomcatThread-->>C: HTTP response
     end
 ```
+
+</div>
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 sequenceDiagram
@@ -244,6 +262,8 @@ sequenceDiagram
     EL-->>C2: response
     end
 ```
+
+</div>
 
 The Tomcat thread spent 200ms doing nothing. The Netty thread served two clients in the same wall-clock time, by interleaving.
 
@@ -271,6 +291,8 @@ The Tomcat thread spent 200ms doing nothing. The Netty thread served two clients
 ## The middle ground: virtual threads (Project Loom)
 
 Java 21 introduced **virtual threads**. They look and feel like normal threads (you write blocking-style code), but the JVM internally schedules them onto a tiny pool of OS threads — like an event loop, just hidden.
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 graph TB
@@ -305,6 +327,8 @@ graph TB
     style VT4 fill:#10b981,color:#fff
     style VT5 fill:#10b981,color:#fff
 ```
+
+</div>
 
 When a virtual thread does a blocking call (`socket.read()`, `Thread.sleep`, `JDBC query`), the JVM **un-mounts** it from the OS thread and runs another virtual thread on that OS thread. When the blocking call completes, the virtual thread gets re-mounted and continues.
 

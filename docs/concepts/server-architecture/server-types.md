@@ -1,6 +1,6 @@
 ---
 title: Server Types & When to Use Each
-sidebar_label: 6. Server Types
+sidebar_label: Server Types
 sidebar_position: 6
 description: Web, TCP, WebSocket, gRPC — what each one is for, how they differ, and a decision flow for picking one.
 tags: [server-architecture, server-types]
@@ -28,6 +28,8 @@ tags: [server-architecture, server-types]
 
 Up to now we've used "server" loosely to mean "a program that listens on a port." But that program can be specialised in different ways depending on what it's listening for.
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 graph TB
     S[Server programs]
@@ -43,6 +45,8 @@ graph TB
     style GS fill:#8b5cf6,color:#fff
 ```
 
+</div>
+
 The category mostly depends on the **protocol** you settled on (or were forced into). Within each category, you then choose a framework — Spring MVC, Express, FastAPI, Netty, etc.
 
 ## Web server (HTTP / HTTPS)
@@ -50,6 +54,8 @@ The category mostly depends on the **protocol** you settled on (or were forced i
 The most common server type, and the default for almost any backend you build today.
 
 **What it does:** accepts HTTP requests, runs your code, sends HTTP responses.
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 sequenceDiagram
@@ -63,6 +69,8 @@ sequenceDiagram
     W-->>C: 200 OK + JSON
     Note over C,W: Connection closed<br/>(or pooled for reuse)
 ```
+
+</div>
 
 **Examples in the wild:**
 - REST APIs (`/users`, `/orders`)
@@ -84,6 +92,8 @@ sequenceDiagram
 
 A server that opens a TCP port and reads/writes bytes directly, without HTTP on top.
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 sequenceDiagram
     participant D as Device (e.g., GPS tracker)
@@ -98,6 +108,8 @@ sequenceDiagram
     D->>T: heartbeat
     T-->>D: ack
 ```
+
+</div>
 
 **What it does:** parses a custom binary (or text) protocol over a raw TCP stream. You decide the framing — usually length-prefixed messages or delimiter-terminated ones.
 
@@ -127,6 +139,8 @@ sequenceDiagram
 
 A server that accepts WebSocket connections (which start as HTTP and upgrade) and holds them open for bidirectional messaging.
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 sequenceDiagram
     participant B as Browser
@@ -142,6 +156,8 @@ sequenceDiagram
     W->>B: "bob: hi" (push!)
     B->>W: pong (heartbeat)
 ```
+
+</div>
 
 **What it does:** maintains thousands of long-lived connections; routes messages between clients (often via pub/sub or in-memory channels).
 
@@ -172,6 +188,8 @@ sequenceDiagram
 
 A server that speaks gRPC: HTTP/2 + Protocol Buffers, with strongly typed contracts.
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 sequenceDiagram
     participant C as Service A (client)
@@ -188,6 +206,8 @@ sequenceDiagram
     G-->>C: User update
     G-->>C: User update
 ```
+
+</div>
 
 **What it does:** exposes typed RPC methods over HTTP/2. Supports unary calls and four streaming variants (server-stream, client-stream, bidi-stream).
 
@@ -228,6 +248,8 @@ You generally don't *write* these from scratch — you use the existing implemen
 
 ## Decision flow
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 flowchart TD
     A{What kind of client<br/>connects to this server?}
@@ -249,6 +271,8 @@ flowchart TD
     style H fill:#8b5cf6,color:#fff
 ```
 
+</div>
+
 ## Side-by-side comparison
 
 | | Web (HTTP) | TCP | WebSocket | gRPC |
@@ -265,6 +289,8 @@ flowchart TD
 ## Combining server types
 
 A real backend often runs **several server types in one process**, or as separate services:
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 graph LR
@@ -286,6 +312,8 @@ graph LR
     style Internal fill:#8b5cf6,color:#fff
     style IoT fill:#ef4444,color:#fff
 ```
+
+</div>
 
 A typical Spring Boot service might expose a REST API on port 8080, WebSocket on `/ws`, and call internal services via gRPC. We'll see how to set those up in [the Spring ecosystem doc](./spring-ecosystem).
 

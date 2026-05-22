@@ -1,6 +1,6 @@
 ---
 title: "Protocols: TCP, HTTP, WebSocket"
-sidebar_label: 5. Protocols
+sidebar_label: Protocols
 sidebar_position: 5
 description: TCP gives you a reliable byte stream. HTTP, WebSocket, and gRPC are different conventions for what to put on top.
 tags: [server-architecture, protocols, tcp, http, websocket]
@@ -24,6 +24,8 @@ tags: [server-architecture, protocols, tcp, http, websocket]
 :::
 
 ## The protocol stack at a glance
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 graph TB
@@ -59,6 +61,8 @@ graph TB
     style UDP fill:#3b82f6,color:#fff
 ```
 
+</div>
+
 Almost every protocol you care about runs on **TCP**. The few exceptions (DNS, video streaming, gaming) use **UDP** for speed at the cost of reliability.
 
 ## TCP: the foundation
@@ -81,6 +85,8 @@ Everything above TCP (HTTP, WebSocket, gRPC) is just *a convention for framing a
 
 HTTP is **text-based**, **stateless**, and **request/response shaped**. Every interaction is one request from client + one response from server.
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 sequenceDiagram
     participant C as Client
@@ -90,6 +96,8 @@ sequenceDiagram
     Note over S: server runs code,<br/>queries DB
     S-->>C: HTTP/1.1 200 OK<br/>Content-Type: application/json<br/><br/>{"id":42,"name":"Ada"}
 ```
+
+</div>
 
 A raw HTTP/1.1 request actually looks like this on the wire — plain text, lines separated by `\r\n`:
 
@@ -120,6 +128,8 @@ Statefulness on top of HTTP is bolted on: cookies, session tokens, JWTs. The pro
 
 ## WebSocket: persistent, bidirectional, message-based
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 sequenceDiagram
     participant C as Client
@@ -137,6 +147,8 @@ sequenceDiagram
     S-->>C: ping
     C-->>S: pong
 ```
+
+</div>
 
 WebSocket starts as a regular HTTP request (so it can pass through firewalls and proxies), then **upgrades** the same TCP connection into a different protocol where either side can send messages at any time.
 
@@ -181,6 +193,8 @@ When you control both endpoints and need extreme efficiency (think: GPS trackers
 
 ## Picking the right protocol
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 flowchart TD
     A{What's the<br/>conversation shape?}
@@ -198,6 +212,8 @@ flowchart TD
     style F fill:#f59e0b,color:#fff
     style G fill:#ef4444,color:#fff
 ```
+
+</div>
 
 Quick comparison table:
 

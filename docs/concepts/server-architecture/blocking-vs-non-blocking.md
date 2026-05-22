@@ -1,6 +1,6 @@
 ---
 title: Blocking vs Non-Blocking I/O
-sidebar_label: 4. Blocking vs Non-Blocking I/O
+sidebar_label: Blocking vs Non-Blocking I/O
 sidebar_position: 4
 description: The single most important concept for understanding modern server design. Once you get this, Tomcat, Netty, Node.js, and reactive programming all click.
 tags: [server-architecture, blocking, non-blocking, io]
@@ -28,6 +28,8 @@ When your server thread calls `socket.read()` and the client hasn't sent any dat
 
 There are two possible answers, and each answer creates an entirely different style of server.
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 graph TB
     Q{"socket.read()<br/>no data yet — what now?"}
@@ -42,9 +44,13 @@ graph TB
     style NB fill:#10b981,color:#fff
 ```
 
+</div>
+
 That's the entire concept. Everything else is consequences.
 
 ## Blocking I/O, visualized
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 sequenceDiagram
@@ -61,6 +67,8 @@ sequenceDiagram
     T->>T: process the data
 ```
 
+</div>
+
 While the thread is blocked, it's **using up a thread slot but doing zero work**. The CPU is happy to run other threads, but *this specific thread* is wasted until data shows up.
 
 If you have a connection where the client sends one message every 5 seconds, that thread sits idle for almost all 5 seconds. With 10,000 such connections, you'd need 10,000 threads — and we already saw in [doc 3](./threads-and-concurrency) that that's a non-starter.
@@ -70,6 +78,8 @@ If you have a connection where the client sends one message every 5 seconds, tha
 **This is bad when:** connections are long-lived but mostly quiet (chat, IoT, streaming), or when each request involves a lot of waiting (slow database, slow downstream API).
 
 ## Non-blocking I/O, visualized
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 sequenceDiagram
@@ -92,6 +102,8 @@ sequenceDiagram
     Note over T: back to watching
 ```
 
+</div>
+
 The thread doesn't park on any individual socket. Instead, it asks the OS: *"tell me when any of these 10,000 sockets has something for me."* That single call (`epoll_wait` on Linux, `kqueue` on macOS/BSD, IOCP on Windows) wakes the thread up only when there's actual work to do.
 
 Result: **one thread can productively serve thousands of mostly-idle sockets.** No more 10k threads, no more 10 GB of stack memory.
@@ -103,6 +115,8 @@ Result: **one thread can productively serve thousands of mostly-idle sockets.** 
 ## Side-by-side: thread utilization
 
 This is the picture worth a thousand words.
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 graph TB
@@ -128,6 +142,8 @@ graph TB
     style TA3 fill:#10b981,color:#fff
     style TB1 fill:#10b981,color:#fff
 ```
+
+</div>
 
 In the blocking model, 4 of 5 threads are doing nothing — but they still take memory and a thread slot. In the non-blocking model, 1 thread serves all 5 clients with no idle time.
 
@@ -191,6 +207,8 @@ Virtual threads / coroutines are the modern answer: **write blocking-style code,
 
 ## When does the trade-off flip?
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 flowchart TD
     A{How many concurrent<br/>connections?}
@@ -209,6 +227,8 @@ flowchart TD
     style F fill:#10b981,color:#fff
     style G fill:#10b981,color:#fff
 ```
+
+</div>
 
 | Scenario | Best fit |
 |---|---|

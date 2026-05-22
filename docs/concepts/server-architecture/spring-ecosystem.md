@@ -1,6 +1,6 @@
 ---
 title: The Spring Ecosystem & Server Choices
-sidebar_label: 8. Spring Ecosystem
+sidebar_label: Spring Ecosystem
 sidebar_position: 8
 description: How Spring, Spring MVC, Spring WebFlux, and Spring Boot compose on top of Tomcat and Netty — and how Spring Boot is used far beyond just web servers.
 tags: [server-architecture, spring, spring-boot, java]
@@ -39,6 +39,8 @@ These words get thrown around interchangeably. They're not the same thing:
 Spring is a framework. Tomcat and Netty are engines. Spring MVC is a framework that runs on top of either of them.
 
 ## The Spring stack, layer by layer
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 graph TB
@@ -85,6 +87,8 @@ graph TB
     style NETTY fill:#8b5cf6,color:#fff
 ```
 
+</div>
+
 Reading bottom-up:
 1. **Tomcat / Netty** — the actual network listener (from [doc 7](./tomcat-vs-netty)).
 2. **Servlet API / Reactor** — the standard Java interface (servlet) or reactive API the engine exposes.
@@ -120,6 +124,8 @@ When people say "Spring", they almost always mean Spring + Spring MVC + Spring B
 
 Spring MVC sits **on top of the Servlet API**. Under the hood:
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 sequenceDiagram
     participant C as Client
@@ -141,6 +147,8 @@ sequenceDiagram
     DS-->>T: response
     T-->>C: 200 OK + JSON
 ```
+
+</div>
 
 - **DispatcherServlet** is the single servlet Spring registers with the container. Every request goes through it.
 - It looks up the right `@Controller` method, invokes it, takes the return value, serializes it (with Jackson), and writes the response.
@@ -201,6 +209,8 @@ Spring Boot does **not** add new web capabilities. It adds:
 4. **Actuator** — health checks, metrics, info endpoints out of the box.
 5. **Property binding** — `application.yml` → typed config classes.
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 graph LR
     A["pom.xml:<br/>spring-boot-starter-web"]
@@ -213,6 +223,8 @@ graph LR
     style A fill:#2563eb,color:#fff
     style D fill:#10b981,color:#fff
 ```
+
+</div>
 
 Before Spring Boot, building a Spring web app involved a `web.xml`, an external Tomcat install, dozens of XML beans, and a deploy step. Now it's `@SpringBootApplication` + `java -jar`.
 
@@ -234,6 +246,8 @@ This is the headline answer to one of the original questions. Spring Boot has **
 
 You can mix several. A typical Spring Boot service might:
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 graph LR
     Boot["Spring Boot Application"]
@@ -250,6 +264,8 @@ graph LR
     style TCP fill:#ef4444,color:#fff
     style KAFKA fill:#f59e0b,color:#fff
 ```
+
+</div>
 
 All in one runnable JAR, all using Spring DI, all sharing the same configuration.
 

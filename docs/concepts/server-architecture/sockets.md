@@ -1,6 +1,6 @@
 ---
 title: "Sockets: The OS Network Endpoint"
-sidebar_label: 2. Sockets
+sidebar_label: Sockets
 sidebar_position: 2
 description: The lowest-level thing your server code touches when the network shows up — and why everything above it makes more sense once you get this.
 tags: [server-architecture, sockets, networking]
@@ -32,6 +32,8 @@ The mental model that unlocks everything:
 
 You `read()` and `write()` to a socket the same way you read and write a file. The OS handles the rest — routing packets, retransmitting lost ones, buffering. From your code's perspective, it's just bytes flowing in and bytes flowing out.
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 graph LR
     A["Your Code"] -->|"write(socket, bytes)"| K[OS Kernel]
@@ -42,6 +44,8 @@ graph LR
     style A fill:#2563eb,color:#fff
     style B fill:#2563eb,color:#fff
 ```
+
+</div>
 
 In Java this is the `Socket` and `ServerSocket` classes. In Python it's the `socket` module. In Go it's `net.Conn`. In C it's literally a file descriptor — an integer. They're all the same OS primitive wrapped differently.
 
@@ -65,6 +69,8 @@ It's also why one server can hold thousands of connections on a single port: eac
 
 A server actually deals with **two kinds** of sockets — and conflating them is the most common source of confusion.
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 graph TB
     LS["🛎️ Listening Socket<br/>:8080<br/><i>the doorbell</i>"]
@@ -82,6 +88,8 @@ graph TB
     style CS3 fill:#10b981,color:#fff
 ```
 
+</div>
+
 **Listening socket** (a.k.a. the "doorbell")
 - The server has exactly one of these per port it serves.
 - Its only job: wait for new connection requests and produce new connected sockets.
@@ -97,6 +105,8 @@ Think of it like a restaurant: the listening socket is the host stand, the conne
 ## The server-side lifecycle
 
 Every TCP server, in every language, follows the same four-step dance:
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 sequenceDiagram
@@ -125,6 +135,8 @@ sequenceDiagram
     App->>OS: close(fd 4)
 ```
 
+</div>
+
 1. **`socket()`** — ask the OS for a new socket. You get back a file descriptor.
 2. **`bind()`** — claim a specific port (e.g., 8080) so clients know where to find you.
 3. **`listen()`** — tell the OS "I'm ready to accept incoming connections on this socket."
@@ -133,6 +145,8 @@ sequenceDiagram
 Once you have the connected socket, you read and write bytes through it until either side closes the connection.
 
 ## The client-side lifecycle is simpler
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 sequenceDiagram
@@ -152,6 +166,8 @@ sequenceDiagram
     OS-->>App: response bytes
     App->>OS: close(fd 3)
 ```
+
+</div>
 
 A client doesn't `bind()`, `listen()`, or `accept()` — it just `connect()`s. The OS picks a random local port for the source side.
 

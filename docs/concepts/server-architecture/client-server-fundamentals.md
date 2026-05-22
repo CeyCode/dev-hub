@@ -1,6 +1,6 @@
 ---
 title: Client-Server Fundamentals
-sidebar_label: 1. Client-Server Fundamentals
+sidebar_label: Client-Server Fundamentals
 sidebar_position: 1
 description: The mental model every server-side concept builds on — who talks to whom, and how.
 tags: [server-architecture, fundamentals]
@@ -24,6 +24,8 @@ This is doc **1 of 8** in the [Server Architecture](/category/server-architectur
 
 ## The model
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 graph LR
     C1[Browser]
@@ -44,6 +46,8 @@ graph LR
     style S fill:#2563eb,color:#fff
 ```
 
+</div>
+
 A **client** is anything that wants to *do* something — fetch data, send a message, open a stream. It knows where the server lives (an IP address and a port).
 
 A **server** is a program that *waits*. It listens for incoming connections, then handles them — maybe by serving one request and disconnecting, maybe by holding the connection open for hours.
@@ -53,6 +57,8 @@ That's it. That's the whole model. Everything else in this series exists to make
 ## Request/response vs persistent connections
 
 The shape of the conversation matters more than any framework choice you'll make later.
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 sequenceDiagram
@@ -79,6 +85,8 @@ sequenceDiagram
     end
 ```
 
+</div>
+
 **Request/response** is one-shot. Client asks, server answers, done. HTTP is the canonical example. Easy to scale horizontally because every request is independent.
 
 **Persistent connections** stay open. Either side can send a message at any time. WebSocket, raw TCP, MQTT — these are persistent. Used when you need real-time push (chat, stock prices, game state) or when devices need to keep a long-lived link (GPS trackers, IoT sensors).
@@ -96,6 +104,8 @@ The trade-off:
 
 When your code writes bytes to a socket, those bytes travel through a stack of layers. You don't write each layer — the OS handles most of it — but knowing which layer does what saves a lot of confusion.
 
+<div style={{textAlign: 'center'}}>
+
 ```mermaid
 graph TB
     A["<b>Application Layer</b><br/>HTTP, WebSocket, gRPC, MQTT<br/><i>your code's protocol</i>"]
@@ -111,6 +121,8 @@ graph TB
     style T fill:#3b82f6,color:#fff
 ```
 
+</div>
+
 You'll mostly think about the **application** and **transport** layers. The rest is the OS's and the network's problem.
 
 A useful rule: HTTP, WebSocket, and gRPC are all *application-layer* protocols. All three sit on top of **TCP**, the transport-layer protocol that gives them a reliable byte stream. They just layer different conventions on top.
@@ -118,6 +130,8 @@ A useful rule: HTTP, WebSocket, and gRPC are all *application-layer* protocols. 
 ## The journey of one HTTP request
 
 What actually happens when you hit `https://api.example.com/users/42`?
+
+<div style={{textAlign: 'center'}}>
 
 ```mermaid
 sequenceDiagram
@@ -136,6 +150,8 @@ sequenceDiagram
     S-->>C: HTTP 200 + JSON body
     Note over C,S: Connection kept alive<br/>or closed
 ```
+
+</div>
 
 1. **DNS lookup** — your machine resolves the hostname to an IP
 2. **TCP handshake** — the famous SYN / SYN-ACK / ACK exchange opens a reliable byte stream
