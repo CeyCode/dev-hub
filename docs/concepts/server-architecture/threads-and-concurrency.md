@@ -8,7 +8,7 @@ tags: [server-architecture, threads, concurrency]
 
 # Threads & Server Concurrency
 
-:::tip TL;DR
+:::tip Summary
 
 - A **thread** is a lightweight unit of execution. A server uses threads so it can handle multiple clients at the same time.
 - The classic pattern is **one thread per client (or per request)** — simple, but it doesn't scale past ~10k threads.

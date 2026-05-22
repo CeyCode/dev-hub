@@ -8,7 +8,7 @@ tags: [server-architecture, tomcat, netty, java, concurrency]
 
 # Tomcat vs Netty: Two Concurrency Models
 
-:::tip TL;DR
+:::tip Summary
 
 - **Tomcat** is a **servlet container** built on the blocking, thread-per-request model. Simple to code against; scales by adding threads.
 - **Netty** is a **non-blocking networking framework** built on the event-loop model. Harder to code against; scales by handling many connections per thread.

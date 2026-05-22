@@ -8,7 +8,7 @@ tags: [server-architecture, spring, spring-boot, java]
 
 # The Spring Ecosystem & Server Choices
 
-:::tip TL;DR
+:::tip Summary
 
 - **Spring** = a dependency injection / framework toolkit. Knows nothing about HTTP.
 - **Spring MVC** = web framework built on the Servlet API. Sits on Tomcat (or Jetty / Undertow).

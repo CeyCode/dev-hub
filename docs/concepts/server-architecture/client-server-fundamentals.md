@@ -8,7 +8,7 @@ tags: [server-architecture, fundamentals]
 
 # Client-Server Fundamentals
 
-:::tip TL;DR
+:::tip Summary
 
 - A **client** initiates a conversation; a **server** waits for one.
 - That conversation can be one-shot (request/response) or persistent (a long-lived stream).

@@ -8,7 +8,7 @@ tags: [server-architecture, protocols, tcp, http, websocket]
 
 # Protocols: TCP, HTTP, WebSocket
 
-:::tip TL;DR
+:::tip Summary
 
 - **TCP** is the foundation: a reliable, ordered stream of bytes. Everything else is layered on top.
 - **HTTP** is request/response messages on top of TCP. Used for ~everything on the web.

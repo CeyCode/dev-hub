@@ -8,7 +8,7 @@ tags: [server-architecture, blocking, non-blocking, io]
 
 # Blocking vs Non-Blocking I/O
 
-:::tip TL;DR
+:::tip Summary
 
 - **Blocking I/O:** the thread sits and waits for the network. Simple to write, but every active connection occupies a whole thread.
 - **Non-blocking I/O:** the OS tells you when a socket is ready. One thread can juggle thousands of sockets, but the code is harder to write.

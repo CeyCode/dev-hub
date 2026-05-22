@@ -8,7 +8,7 @@ tags: [server-architecture, server-types]
 
 # Server Types & When to Use Each
 
-:::tip TL;DR
+:::tip Summary
 
 - A **web server** speaks HTTP — the default for ~90% of use cases.
 - A **TCP server** speaks a custom binary protocol on raw TCP — used for hardware, IoT, and ultra-low-latency systems.

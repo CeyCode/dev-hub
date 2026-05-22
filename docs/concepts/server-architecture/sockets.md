@@ -8,7 +8,7 @@ tags: [server-architecture, sockets, networking]
 
 # Sockets: The OS Network Endpoint
 
-:::tip TL;DR
+:::tip Summary
 
 - A **socket** is the OS's handle for a network endpoint — like a file descriptor, but for network I/O.
 - A server has **one listening socket** that accepts new connections, and **one connected socket per active client**.
