@@ -60,4 +60,4 @@ Smaller image = faster pulls, smaller attack surface, less to scan for vulnerabi
 
 ---
 
-*Have a Docker tip? [Write a TIL or article](/contributing) and share it with the team.*
+*Have a Docker tip? [Write a TIL or article](/kb/contributing) and share it with the team.*

@@ -69,7 +69,7 @@ If you're unsure, start with a blog post. Good ones often get promoted into the 
 
 ## Tagging
 
-Tags power the [Tags page](/tags) and make content discoverable. Use them consistently:
+Tags power the [Tags page](/kb/tags) and make content discoverable. Use them consistently:
 
 - **Technology**: `java`, `typescript`, `react`, `docker`, `kubernetes`, `git`, `spring-boot`, `python`, `go`
 - **Content type**: `tutorial`, `til`, `best-practices`, `deep-dive`, `comparison`

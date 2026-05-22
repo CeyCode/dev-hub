@@ -17,4 +17,4 @@ React patterns, hooks, and performance tips for building our frontend.
 - Testing React components with Testing Library
 - Common pitfalls with `useEffect` and stale closures
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.

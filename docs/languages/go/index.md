@@ -17,4 +17,4 @@ Go knowledge base — concurrency, tooling, and patterns for writing idiomatic G
 - Go modules and dependency management
 - Writing testable Go code
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.

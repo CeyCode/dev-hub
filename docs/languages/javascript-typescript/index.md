@@ -17,4 +17,4 @@ Practical knowledge for JS and TS — from language quirks to type-system patter
 - Common JS pitfalls and how to avoid them
 - Runtime differences (Node.js vs browser)
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.

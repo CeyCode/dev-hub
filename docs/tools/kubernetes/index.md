@@ -17,4 +17,4 @@ Kubernetes concepts, resource patterns, and operational tips.
 - Health probes (liveness, readiness, startup)
 - `kubectl` tips and tricks
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.

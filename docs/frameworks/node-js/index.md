@@ -17,4 +17,4 @@ Node.js knowledge — runtime behaviour, async patterns, and building reliable s
 - Package management (npm/pnpm workspaces)
 - Building HTTP APIs with Express or Fastify
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.

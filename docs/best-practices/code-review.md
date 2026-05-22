@@ -22,4 +22,4 @@ How we give and receive code reviews effectively as a team.
 - Self-review before requesting review
 - Respond to every comment, even if just to acknowledge
 
-> Have a tip that's changed how your reviews go? [Share it](/contributing).
+> Have a tip that's changed how your reviews go? [Share it](/kb/contributing).

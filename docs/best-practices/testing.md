@@ -22,4 +22,4 @@ Principles for writing tests that are valuable, maintainable, and trustworthy.
 - Tests that only pass in CI or only pass locally
 - Snapshot tests without a clear reason to use them
 
-> Know a testing pattern that's worked well? [Write it up](/contributing).
+> Know a testing pattern that's worked well? [Write it up](/kb/contributing).

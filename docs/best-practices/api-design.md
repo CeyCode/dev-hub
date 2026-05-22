@@ -21,4 +21,4 @@ Principles for designing APIs that are intuitive, consistent, and evolvable.
 - Naming convention (camelCase vs snake_case) — pick one and stick to it
 - How you handle partial updates (PUT vs PATCH)
 
-> Have a pattern or gotcha worth documenting? [Contribute it](/contributing).
+> Have a pattern or gotcha worth documenting? [Contribute it](/kb/contributing).

@@ -17,4 +17,4 @@ Container fundamentals, Dockerfile best practices, and day-to-day Docker tips.
 - Networking between containers
 - Debugging running containers
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.

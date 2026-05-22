@@ -17,4 +17,4 @@ Git workflows, tips, and tricks that make day-to-day development smoother.
 - Recovering from mistakes (`reflog`, `reset`, `restore`)
 - Useful aliases and config
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.

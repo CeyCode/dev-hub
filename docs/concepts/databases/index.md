@@ -17,4 +17,4 @@ Database concepts, query patterns, and practical tips across SQL and NoSQL.
 - Schema design principles
 - Choosing between SQL and NoSQL
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.

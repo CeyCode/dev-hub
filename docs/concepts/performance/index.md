@@ -17,4 +17,4 @@ How to find, measure, and fix performance problems across the stack.
 - GC tuning basics for the JVM
 - Frontend performance — Core Web Vitals
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.

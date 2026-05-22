@@ -2,7 +2,9 @@
 
 A team knowledge-sharing platform built with [Docusaurus](https://docusaurus.io/). Engineers write it, engineers read it.
 
-**Live site → [CeyCode.github.io/knowledgebase](https://CeyCode.github.io/knowledgebase/)**
+**Live site → [ceycode.github.io/dev-hub](https://ceycode.github.io/dev-hub/)**  
+**Knowledge Base → [ceycode.github.io/dev-hub/kb](https://ceycode.github.io/dev-hub/kb)**  
+**Blog → [ceycode.github.io/dev-hub/blog](https://ceycode.github.io/dev-hub/blog)**
 
 ---
 
@@ -52,7 +54,7 @@ This builds and pushes to the `gh-pages` branch.
 
 ## Contributing
 
-See [docs/contributing.md](docs/contributing.md) — or visit the [Contribute page](https://CeyCode.github.io/knowledgebase/contributing) on the live site.
+See [docs/contributing.md](docs/contributing.md) — or visit the [Contribute page](https://ceycode.github.io/dev-hub/kb/contributing) on the live site.
 
 The short version: add a file, fill in the frontmatter, open a PR.
 

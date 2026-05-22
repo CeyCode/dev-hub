@@ -17,4 +17,4 @@ Continuous integration and delivery — pipelines, patterns, and practical tips.
 - Deployment strategies (blue/green, canary, rolling)
 - Secrets management in pipelines
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.

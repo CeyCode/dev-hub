@@ -18,4 +18,4 @@ Spring Boot guides — from dependency injection to building production-ready se
 - Actuator, health checks, and metrics
 - Testing slices (`@WebMvcTest`, `@DataJpaTest`)
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.

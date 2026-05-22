@@ -17,4 +17,4 @@ Java knowledge base — tips, gotchas, and patterns for writing better Java on o
 - JVM internals and tuning basics
 - Testing with JUnit 5 and Mockito
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.

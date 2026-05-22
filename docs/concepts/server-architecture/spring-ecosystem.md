@@ -415,4 +415,4 @@ If anything in this series was unclear, file an issue or a TIL — that's how th
 
 **← Previous** [7. Tomcat vs Netty: Two Concurrency Models](./tomcat-vs-netty)
 
-**🏁 You've reached the end of the [Server Architecture series](/category/server-architecture).**
+**🏁 You've reached the end of the [Server Architecture series](/kb/category/server-architecture).**

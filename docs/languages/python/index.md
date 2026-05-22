@@ -17,4 +17,4 @@ Python tips, idioms, and best practices for scripting, tooling, and data work.
 - Testing with `pytest`
 - Common stdlib modules worth knowing
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.

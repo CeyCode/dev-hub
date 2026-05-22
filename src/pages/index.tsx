@@ -15,7 +15,7 @@ type Topic = {
 const topics: Topic[] = [
   {
     label: 'Languages',
-    href: '/languages/java',
+    href: '/kb/languages/java',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="16 18 22 12 16 6" />
@@ -25,7 +25,7 @@ const topics: Topic[] = [
   },
   {
     label: 'Frameworks',
-    href: '/frameworks/react',
+    href: '/kb/frameworks/react',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
@@ -36,7 +36,7 @@ const topics: Topic[] = [
   },
   {
     label: 'Tools',
-    href: '/tools/docker',
+    href: '/kb/tools/docker',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
@@ -45,7 +45,7 @@ const topics: Topic[] = [
   },
   {
     label: 'Concepts',
-    href: '/concepts/system-design',
+    href: '/kb/concepts/system-design',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" />
@@ -56,7 +56,7 @@ const topics: Topic[] = [
   },
   {
     label: 'Best Practices',
-    href: '/best-practices/code-review',
+    href: '/kb/best-practices/code-review',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
@@ -236,7 +236,7 @@ function Hero(): ReactNode {
           you&apos;ve learned, discover what others know, and grow together.
         </p>
         <div className={styles.ctaRow}>
-          <Link className={styles.ctaPrimary} to="/welcome">
+          <Link className={styles.ctaPrimary} to="/kb/welcome">
             Explore the Knowledge Base
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <line x1="5" y1="12" x2="19" y2="12" />
@@ -329,10 +329,10 @@ function ContributeCTA(): ReactNode {
             </p>
           </div>
           <div className={styles.contributeActions}>
-            <Link className={styles.ctaPrimary} to="/contributing">
+            <Link className={styles.ctaPrimary} to="/kb/contributing">
               How to contribute
             </Link>
-            <Link className={styles.ctaSecondary} to="/templates/til">
+            <Link className={styles.ctaSecondary} to="/kb/templates/til">
               Use a template
             </Link>
           </div>

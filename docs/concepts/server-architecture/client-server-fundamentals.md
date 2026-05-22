@@ -18,7 +18,7 @@ tags: [server-architecture, fundamentals]
 
 :::note Series
 
-This is doc **1 of 8** in the [Server Architecture](/category/server-architecture) series. Read in order if you're new; jump if you're not.
+This is doc **1 of 8** in the [Server Architecture](/kb/category/server-architecture) series. Read in order if you're new; jump if you're not.
 
 :::
 

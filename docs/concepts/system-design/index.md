@@ -17,4 +17,4 @@ Architectural patterns and principles for designing reliable, scalable systems.
 - Caching strategies and cache invalidation
 - Rate limiting and backpressure
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.

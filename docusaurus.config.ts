@@ -12,10 +12,10 @@ const config: Config = {
   },
 
   url: 'https://CeyCode.github.io',
-  baseUrl: '/knowledgebase/',
+  baseUrl: '/dev-hub/',
 
   organizationName: 'CeyCode',
-  projectName: 'knowledgebase',
+  projectName: 'dev-hub',
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
@@ -54,9 +54,9 @@ const config: Config = {
       'classic',
       {
         docs: {
-          routeBasePath: '/',
+          routeBasePath: '/kb',
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/CeyCode/knowledgebase/tree/main/',
+          editUrl: 'https://github.com/CeyCode/dev-hub/tree/main/',
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
         },
@@ -65,7 +65,7 @@ const config: Config = {
           blogSidebarTitle: 'Recent articles',
           blogSidebarCount: 15,
           postsPerPage: 10,
-          editUrl: 'https://github.com/CeyCode/knowledgebase/tree/main/',
+          editUrl: 'https://github.com/CeyCode/dev-hub/tree/main/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -104,17 +104,17 @@ const config: Config = {
           position: 'right',
         },
         {
-          to: '/tags',
+          to: '/kb/tags',
           label: 'Tags',
           position: 'right',
         },
         {
-          to: '/contributing',
+          to: '/kb/contributing',
           label: 'Contribute',
           position: 'right',
         },
         {
-          href: 'https://github.com/CeyCode/knowledgebase',
+          href: 'https://github.com/CeyCode/dev-hub',
           label: 'GitHub',
           position: 'right',
         },
@@ -126,19 +126,19 @@ const config: Config = {
         {
           title: 'Explore',
           items: [
-            {label: 'Languages', to: '/languages/java'},
-            {label: 'Frameworks', to: '/frameworks/react'},
-            {label: 'Tools', to: '/tools/docker'},
-            {label: 'Concepts', to: '/concepts/system-design'},
-            {label: 'Best Practices', to: '/best-practices/code-review'},
+            {label: 'Languages', to: '/kb/languages/java'},
+            {label: 'Frameworks', to: '/kb/frameworks/react'},
+            {label: 'Tools', to: '/kb/tools/docker'},
+            {label: 'Concepts', to: '/kb/concepts/system-design'},
+            {label: 'Best Practices', to: '/kb/best-practices/code-review'},
           ],
         },
         {
           title: 'Community',
           items: [
             {label: 'Blog', to: '/blog'},
-            {label: 'How to Contribute', to: '/contributing'},
-            {label: 'GitHub', href: 'https://github.com/CeyCode/knowledgebase'},
+            {label: 'How to Contribute', to: '/kb/contributing'},
+            {label: 'GitHub', href: 'https://github.com/CeyCode/dev-hub'},
           ],
         },
       ],

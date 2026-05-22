@@ -17,4 +17,4 @@ Security concepts and practical patterns every developer on the team should know
 - Secrets management (never in code)
 - Dependency vulnerability scanning
 
-> This section is growing. [Contribute an article](/contributing) if you know something worth sharing.
+> This section is growing. [Contribute an article](/kb/contributing) if you know something worth sharing.
