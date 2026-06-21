@@ -1,0 +1,9 @@
+{
+  "label": "Authorization",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "title": "Authorization",
+    "description": "A 6-part series that builds a complete mental model of how authorization works in Java applications — from the basics up through Spring Security and JWT. Read in order if you're new; jump to a specific doc if you already know the basics."
+  }
+}
